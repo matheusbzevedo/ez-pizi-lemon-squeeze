@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <title>Scania | Login</title>
+        <meta charset=UTF-8>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <link href=/styles/css/style.css rel=stylesheet>
+    </head>
+    <body>
+        <main>
+            <div class="col s12 center-align container-login">
+                <div class=container>
+                    <div class=row></div>
+                    <div class=row></div>
+                    <img src=/images/logo.png class=responsive-img alt="Scania Logo">
+                    <img src=/images/login/caminhao.png class=responsive-img alt="Scania">
+                </div>
+            </div>
+            <div class=container>
+                <div class=row></div>
+                <div class=row></div>
+                <div class=row>
+                    <form class="col s12 login-form">
+                        <div class=row>
+                            <div class="input-field col s4">
+                                <input id=usuario type=text class=validate autofocus>
+                                <label for=usuario>Usuário</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id=senha type=password class=validate>
+                                <label for=senha>Senha</label>
+                            </div>
+                            <div class="input-field col s4 center-align">
+                                <button class="btn btn-scania" type=submit>Entrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <script src=/lib/jquery.js></script>
+        <script src=/lib/materialize.js></script>
+        <script src=https://unpkg.com/axios/dist/axios.min.js></script>
+        <script src=/js/materialize.js></script>
+        <script src=/js/login.js></script>
+    </body>
+</html>

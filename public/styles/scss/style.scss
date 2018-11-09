@@ -1,0 +1,70 @@
+@import "materialize/materialize";
+@import "header";
+
+$scania-cor: #4d7be0;
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+i.icon-green {
+    color: #64dd17;
+}
+
+.menu-escolhas {
+    a {
+        background-color: #eee;
+        width: 100%;
+        color: black;
+        display: block;
+        padding: 15px 5px;
+        text-decoration: none;
+        &:hover{
+             background-color: #ccc;
+        }
+        :active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    }
+}
+
+.no-padding {
+    padding: 0% !important;
+}
+
+.container-login {
+    width: 100% !important;
+    background-color: #f8f8f8;
+}
+
+.login-form {
+    label {
+        color: #000 !important;
+        font-weight: bold;
+        &.active {
+            color: $scania-cor !important;
+        }
+    }
+    input {
+        background-color: #f5f5fa !important;
+        &:focus {
+            border-bottom: 1px solid $scania-cor !important;
+            box-shadow: 0 1px 0 0 $scania-cor !important;
+        }
+    }
+    .btn-scania {
+        border-radius: 50px !important;
+        background-color: $scania-cor;
+        &:hover {
+            background-color: #fff;
+            color: $scania-cor;
+        }
+    }
+}
