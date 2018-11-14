@@ -7,6 +7,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    overflow: hidden;
 }
 
 main {
@@ -16,21 +17,38 @@ main {
 i.icon-green {
     color: #64dd17;
 }
+i.icon-red {
+    color: red;
+}
 
 .menu-escolhas {
+    background-color: #eee;
+    height: 2000px;
+    border: 1px solid lightgray;
     a {
         background-color: #eee;
         width: 100%;
         color: black;
         display: block;
-        padding: 15px 5px;
+        padding: 24px 10px;
         text-decoration: none;
+        span {
+            padding-left: 48px;
+        }
+        img {
+            padding-left: 24px;
+            width: 48px;
+        }
         &:hover{
              background-color: #ccc;
         }
-        :active {
-            background-color: #4CAF50;
-            color: white;
+        &.active {
+            &.active-red {
+                border-left: 4px solid red;
+            }
+            &.active-blue {
+                border-left: 4px solid blue;
+            }
         }
     }
 }
@@ -44,19 +62,32 @@ i.icon-green {
     background-color: #f8f8f8;
 }
 
-.login-form {
+.logo-scania {
+    max-width: 420px;
+    max-height: 72px;
+}
+
+.caminhao {
+    max-width: 850px;
+    max-height: 670px;
+}
+
+form {
     label {
         color: #000 !important;
         font-weight: bold;
+        padding-left: 12px;
         &.active {
             color: $scania-cor !important;
         }
     }
     input {
         background-color: #f5f5fa !important;
+        border-bottom: 0px solid $scania-cor !important;
+        box-shadow: 0 0 0 0 $scania-cor !important;
         &:focus {
-            border-bottom: 1px solid $scania-cor !important;
-            box-shadow: 0 1px 0 0 $scania-cor !important;
+            border-bottom: 0px solid $scania-cor !important;
+            box-shadow: 0 0 0 0 $scania-cor !important;
         }
     }
     .btn-scania {
@@ -67,4 +98,33 @@ i.icon-green {
             color: $scania-cor;
         }
     }
+}
+
+.scania-header {
+    border: 1px solid lightgray;
+    .sidenav {
+        box-shadow: none !important;
+        li:last-child > a {
+            color: $scania-cor !important;
+        }
+    }
+}
+
+.btn-add {
+    background-color: $scania-cor;
+    border-radius: 50px !important;
+    &:hover {
+        background-color: #fff;
+        color: $scania-cor;
+    }
+}
+
+.brand-logo {
+    img {
+        width: 180px;
+    }
+}
+
+table {
+    border-top: 1px solid lightgray;
 }

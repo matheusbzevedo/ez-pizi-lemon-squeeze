@@ -35,7 +35,13 @@ app.use(logger('dev'))
     proxy: true,
     resave: true,
     saveUninitialized: true
-}));
+}))
+.use((request, response, next) => {
+    response.header('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    response.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 appRoutes(app);
 
@@ -45,8 +51,9 @@ app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    if(err.status == 404)
-        res.redirect('/login');
+    // if(err.status == 404)
+    //     console.log('top');
+    //     // res.redirect('/login');
 
     res.status(err.status || 500).render('error');
 });
