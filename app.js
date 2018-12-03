@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const createError = require('http-errors'),
     express = require('express'),
     path = require('path'),
@@ -7,7 +9,8 @@ const createError = require('http-errors'),
     compression = require('compression'),
     session = require('express-session');
 
-const appRoutes = require('./routes');
+const appRoutes = require('./routes'),
+    apiRoutes = require('./routes/api');
 
 app = express();
 
@@ -44,17 +47,13 @@ app.use(logger('dev'))
 });
 
 appRoutes(app);
+apiRoutes(app);
 
 app.use((req, res, next) => next(createError(404)));
 
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // if(err.status == 404)
-    //     console.log('top');
-    //     // res.redirect('/login');
-
     res.status(err.status || 500).render('error');
 });
 

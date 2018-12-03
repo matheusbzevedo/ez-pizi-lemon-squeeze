@@ -21,8 +21,7 @@
         <main>
             <div class=row>
                 <div class="col s2 menu-escolhas no-padding">
-                    <a href=/dispositivos><img src=/images/icons/device_red.png alt=""><span>Dispostivos</span></a>
-                    <a class="active active-blue" href=/prazos><img src=/images/icons/device_blue.png alt=""><span>Prazos</span></a>
+                   <%- include('components/side-menu', red, blue); %>
                 </div>
                 <div class="col s10 no-padding">
                     <table class="striped centered">
@@ -41,8 +40,8 @@
                                 <td><i class="material-icons tiny icon-green">lens</i></td>
                                 <td>Marcel Cunha</td>
                                 <td>Notebook</td>
-                                <td>8 Nov 2018</td>
-                                <td>10 Nov 2018</td>
+                                <td>8 Nov 2018 8:17:39</td>
+                                <td>10 Nov 2018 12:00:00</td>
                                 <td>Engenharia</td>
                                 <td>(92) 99999-9999</td>
                                 <td>123456789</td>
@@ -51,8 +50,8 @@
                                 <td><i class="material-icons tiny icon-green">lens</i></td>
                                 <td>Marcel Cunha</td>
                                 <td>Notebook</td>
-                                <td>8 Nov 2018</td>
-                                <td>10 Nov 2018</td>
+                                <td>8 Nov 2018 9:41:21</td>
+                                <td>10 Nov 2018 18:00:00</td>
                                 <td>Engenharia</td>
                                 <td>(92) 99999-9999</td>
                                 <td>123456789</td>
@@ -61,8 +60,8 @@
                                 <td><i class="material-icons tiny icon-green">lens</i></td>
                                 <td>Marcel Cunha</td>
                                 <td>Notebook</td>
-                                <td>8 Nov 2018</td>
-                                <td>10 Nov 2018</td>
+                                <td>8 Nov 2018 11:17:17</td>
+                                <td>10 Nov 2018 16:30:00</td>
                                 <td>Engenharia</td>
                                 <td>(92) 99999-9999</td>
                                 <td>123456789</td>
@@ -97,9 +96,9 @@
                             <div class="input-field col s6">
                                 <select id=setor>
                                     <option value="" disabled selected>Escolha</option>
-                                    <option value=1>Option 1</option>
-                                    <option value=2>Option 2</option>
-                                    <option value=3>Option 3</option>
+                                    <option value=Engenharia>Engenharia</option>
+                                    <option value=RH>RH</option>
+                                    <option value=Contabilidade>Contabilidade</option>
                                 </select>
                                 <label>Setor</label>
                             </div>
