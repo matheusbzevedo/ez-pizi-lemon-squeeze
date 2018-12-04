@@ -50,6 +50,18 @@ router
 
         response.status(200).send('Perfil excluído com sucesso!');
     });
+})
+.get('/:id', (request, response, next) => {
+    db.query(`
+        SELECT * FROM perfil WHERE id = ?
+    `, [
+        request.params.id
+    ], (error, results) => {
+        if(error)
+            response.status(500).send(`Erro ao encontrar perfil. Tente novamente mais tarde. ${error}`);
+        
+            response.status(200).json(results);
+    });
 });
 
 module.exports = router;
