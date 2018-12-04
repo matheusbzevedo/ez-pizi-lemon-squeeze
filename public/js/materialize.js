@@ -1,7 +1,8 @@
 $(() => {
     $('.modal').modal();
     $('select').material_select();
-    $(".button-collapse").sideNav();
+    $('.button-collapse').sideNav();
+    $('.dropdown-button').dropdown();
     $('.datepicker').pickadate({
         min: new Date(2018,11,8),
         selectMonths: true, // Creates a dropdown to control month

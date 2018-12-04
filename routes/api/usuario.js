@@ -1,6 +1,7 @@
 const express = require('express'),
     router = express.Router(),
-    db = require('../../database');
+    db = require('../../database'),
+    auth = require('../../helpers/auth');
 
 router
 .post('/', (request, response, next) => {
@@ -17,18 +18,18 @@ router
 })
 .get('/', (request, response, next) => {
     db.query(`
-        SELECT * FROM setor
+        SELECT * FROM usuario
     `, (error, results) => {
         if(error)
-            response.status(500).send(`Erro ao buscar setor. Tente novamente mais tarde. ${error}`);
+            response.status(500).send(`Erro ao buscar usuários. Tente novamente mais tarde. ${error}`);
 
         response.json(results);
     });
 })
 .put('/', (request, response, next) => {
     db.query(`
-        UPDATE setor SET descricao = ?
-        WHERE setor.id = ?
+        UPDATE usuario SET descricao = ?
+        WHERE usuario.id = ?
     `, [
         request.body.descricao,
         request.body.id
@@ -41,16 +42,19 @@ router
 })
 .delete('/', (request, response, next) => {
     db.query(`
-        DELETE FROM setor WHERE setor.id = ?
+        DELETE FROM usuario WHERE usuario.id = ?
     `, [
         request.body.id
     ], (error, results) => {
         if(error)
-            response.status(500).send(`Erro ao excluir setor. Tente novamente mais tarde. ${error}`);
+            response.status(500).send(`Erro ao excluir usuário. Tente novamente mais tarde. ${error}`);
 
-        response.status(200).send(`Setor excluído com sucesso!`);
+        response.status(200).send(`Usuário excluído com sucesso!`);
     });
     response.status(200).send(request.body);
+})
+.get('/:id', auth.hasToken, (request, response, next) => {
+    response.send(request.params);
 });
 
 module.exports = router;

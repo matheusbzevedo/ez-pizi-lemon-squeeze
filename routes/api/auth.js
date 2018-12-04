@@ -1,6 +1,7 @@
 const express = require('express'),
     router = express.Router(),
-    db = require('../../database');
+    db = require('../../database'),
+    jwt = require('jsonwebtoken');
 
 router
 .post('/', (request, response, next) => {
@@ -29,8 +30,12 @@ router
         
         if(results.length == 0)
             response.status(401).send('Login e/ou senha incorretos!');
-        else
-            response.json(results);
+        else {
+            request.session.token = jwt.sign(JSON.stringify(results[0]), process.env.JWT_SECRET);
+            request.session.user = results;
+            request.session.perfil = results[0].perfilID;
+            response.status(200).send('Usuário logado com sucesso!');
+        }
     });
 });
 

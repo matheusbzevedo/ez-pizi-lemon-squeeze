@@ -104,7 +104,7 @@ form {
     border: 1px solid lightgray;
     .sidenav {
         box-shadow: none !important;
-        li:last-child > a {
+        li:not(:last-child) > a {
             color: $scania-cor !important;
         }
     }

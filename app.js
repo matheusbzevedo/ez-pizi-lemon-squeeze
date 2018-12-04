@@ -34,7 +34,7 @@ app.use(logger('dev'))
 }))
 .use(express.static(path.join(__dirname, 'public')))
 .use(session({
-    secret: 'topzera1',
+    secret: process.env.JWT_SECRET,
     proxy: true,
     resave: true,
     saveUninitialized: true
