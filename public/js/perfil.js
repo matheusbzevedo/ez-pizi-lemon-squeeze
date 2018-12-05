@@ -1,7 +1,7 @@
 $('#add-perfil').on('click', (event) => {
     axios({
         method: 'POST',
-        url: 'http://localefy.mapinnovation.com.br/api/perfil',
+        url: '/api/perfil',
         data: {
             descricao: $('#descricao').val()
         }

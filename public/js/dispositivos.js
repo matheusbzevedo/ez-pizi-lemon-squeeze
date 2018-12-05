@@ -5,7 +5,7 @@ $('.deletePrazo').on('click', () => {
 $('#adicionar-lista').on('click', (event) => {
     axios({
         method: 'POST',
-        url: 'http://localhost:3000/api/prazos',
+        url: '/api/prazos',
         data: {
             usuario: $('#usuario').val(),
             dispositivo: $('#dispositivo').val(),
