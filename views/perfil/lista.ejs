@@ -37,8 +37,8 @@
                                     <td><%= perfil.id %></td>
                                     <td><%= perfil.descricao %></td>
                                     <td>
-                                        <a class="waves-effect waves-teal btn-flat modal-trigger"><i class="small material-icons">edit</i></a>
-                                        <a class="waves-effect waves-teal btn-flat"><i class="small material-icons">delete</i></a>
+                                        <a class="waves-effect waves-teal btn-flat modal-trigger edit-item" href="#lista-editar-item"><i class="small material-icons">edit</i></a>
+                                        <a class="waves-effect waves-teal btn-flat del-item" href="/perfil/delete/<%= perfil.id %>"><i class="small material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             <% }); %>
@@ -64,11 +64,27 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <div id="lista-editar-item" class="modal modal-profile">
+        <div class="modal-content">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="descricao" name="descricao" placeholder="Descrição">
+                        <input type="hidden" id="id" name="id">
+                        <label for="descricao">Descrição</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button id="updt-perfil"  type="submit" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+        </div>
+    </div>
+
     <script src=/lib/jquery.js></script>
     <script src=/lib/materialize.js></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src=/js/materialize.js></script>
-    <script src=/js/dispositivo-post.js></script>
     <script src=/js/perfil.js></script>
     </body>
 </html>
