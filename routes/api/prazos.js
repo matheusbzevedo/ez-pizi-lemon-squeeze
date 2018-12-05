@@ -17,10 +17,18 @@ router
 })
 .get('/', (request, response, next) => {
     db.query(`
-        SELECT * FROM prazos
+        SELECT
+            prazos.id,
+            DATE_FORMAT(prazos.retirada, '%Y-%m-%d %H:%i:%s') AS 'retirada',
+            DATE_FORMAT(prazos.entrega, '%Y-%m-%d %H:%i:%s') AS 'entrega',
+            usuario.nome,
+            usuario.email,
+            setor.descricao AS 'setor',
+            dispositivos.descricao AS 'dispositivo'
+        FROM prazos
         LEFT JOIN usuario ON usuario.id = prazos.usuario
         LEFT JOIN dispositivos ON dispositivos.id = prazos.dispositivo
-        LEFT JOIN setor ON setor.id = prazos.setor
+        LEFT JOIN setor ON setor.id = usuario.setorID
     `, (error, results) => {
         if(error)
             response.status(500).send(`Erro ao buscar dispositivos. Tente novamente mais tarde. ${error}`);
