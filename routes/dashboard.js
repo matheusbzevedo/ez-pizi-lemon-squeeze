@@ -54,6 +54,17 @@ router
 .get('/verificar', auth.isLogged, auth.isCommomUser, (request, response, next) => {
     response.send('Usuário comum.');
 })
-.get('/perfil/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/perfil`).then(perfis => response.render('perfil/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', perfis: perfis.data.perfis })));
+.get('/perfil/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/perfil`).then(perfis => response.render('perfil/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', perfis: perfis.data.perfis })))
+.get('/perfil/delete/:id', auth.isLogged, auth.isAdm, (request, response, next) => {
+    axios({
+        method: 'DELETE',
+        url: `${process.env.API_URL}/perfil`,
+        data: {
+            id: request.params.id
+        }
+    })
+    .then(res => response.redirect('/perfil/listar'))
+    .catch(error => console.log(res));
+});
 
 module.exports = router;
