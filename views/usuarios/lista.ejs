@@ -39,9 +39,9 @@
                                 <tr>
                                     <td><%= usuario.id %></td>
                                     <td><%= usuario.nome %></td>
-                                    <td><%= usuario.nome %></td>
-                                    <td><%= usuario.nome %></td>
-                                    <td><%= usuario.nome %></td>
+                                    <td><%= usuario.email %></td>
+                                    <td><%= usuario.perfil %></td>
+                                    <td><%= usuario.setor %></td>
                                     <td>
                                         <a class="modal-trigger edit-item" href="#lista-editar-item"><i class="material-icons">edit</i></a>
                                         <a class="del-item" href="/perfil/delete/<%= usuario.id %>"><i class="material-icons">delete</i></a>
@@ -91,5 +91,6 @@
     <script src=/lib/materialize.js></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src=/js/materialize.js></script>
+    <script src=/js/usuario.js></script>
     </body>
 </html>
