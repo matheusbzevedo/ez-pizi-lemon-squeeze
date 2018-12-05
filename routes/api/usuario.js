@@ -18,7 +18,15 @@ router
 })
 .get('/', (request, response, next) => {
     db.query(`
-        SELECT * FROM usuario
+        SELECT
+            usuario.id,
+            usuario.nome,
+            usuario.email,
+            perfil.descricao AS 'perfil',
+            setor.descricao AS 'setor'
+        FROM usuario
+        LEFT JOIN perfil ON perfil.id = usuario.perfilID
+        LEFT JOIN setor ON setor.id = usuario.perfilID
     `, (error, results) => {
         if(error)
             response.status(500).send(`Erro ao buscar usuários. Tente novamente mais tarde. ${error}`);

@@ -29,7 +29,7 @@
                     <thead>
                         <th>Id</th>
                         <th>Descrição</th>
-                        <th>Opções</th>
+                        <th></th>
                     </thead>
                     <tbody class="dispositivos-lista">
                             <% perfis.forEach(function(perfil){ %>
@@ -37,8 +37,8 @@
                                     <td><%= perfil.id %></td>
                                     <td><%= perfil.descricao %></td>
                                     <td>
-                                        <a class="waves-effect waves-teal btn-flat modal-trigger edit-item" href="#lista-editar-item"><i class="small material-icons">edit</i></a>
-                                        <a class="waves-effect waves-teal btn-flat del-item" href="/perfil/delete/<%= perfil.id %>"><i class="small material-icons">delete</i></a>
+                                        <a class="modal-trigger edit-item" href="#lista-editar-item"><i class="material-icons">edit</i></a>
+                                        <a class="del-item" href="/perfil/delete/<%= perfil.id %>"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             <% }); %>
@@ -60,7 +60,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button id="add-perfil"  type="submit" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+            <button id="add-perfil"  type="submit" class="modal-close btn-flat">Submit</button>
         </div>
     </div>
 
@@ -77,7 +77,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button id="updt-perfil" type="submit" class="modal-close waves-effect waves-green btn-flat">Submit</button>
+            <button id="updt-perfil" type="submit" class="modal-close btn-flat">Submit</button>
         </div>
     </div>
 
