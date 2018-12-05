@@ -9,10 +9,10 @@ $('#adicionar-lista').on('click', (event) => {
         data: {
             usuario: $('#usuario').val(),
             dispositivo: $('#dispositivo').val(),
-            retirada: $('#dataRetirada').val() + ' ' + $('#horaRetirada').val(),
-            entrega: $('#dataEntrega').val() + ' ' + $('#horaEntrega').val()
+            retirada: $('#dataRetirada').val() + ' ' + $('#horaRetirada').val() + ':00',
+            entrega: $('#dataEntrega').val() + ' ' + $('#horaEntrega').val() + ':00'
         }
     })
-    .then(response => console.log(response))
-    .catch(error => console.log(error));
+    .then(response => Materialize.toast(response.data, 2000, 'rounded', () => location.reload()))
+    .catch(error => Materialize.toast(error, 2000, 'rounded'));
 });

@@ -1,26 +1,25 @@
 const express = require('express'),
     router = express.Router(),
-    db = require('../../database');
+    db = require('../../database'),
+    date = require('../../helpers/date');
 
 router
 .post('/', (request, response, next) => {
-    console.log(new Date(request.body.entrega).getFullYear());
-    console.log(new Date(request.body.entrega).getMonth());
-    console.log(new Date(request.body.entrega).getDate());
-    console.log(new Date(request.body.entrega).getHours());
-    console.log(new Date(request.body.entrega).getMinutes());
-    console.log(new Date(request.body.entrega).getSeconds());
-    response.send(request.body);
-    // db.query(`
-    //     INSERT INTO prazos(usuario, dispositivo, retirada, entrega, setor) VALUES (?, ?, ?, ?, 1)
-    // `, [
-    //     request.body.descricao
-    // ], (error, results) => {
-    //     if(error)
-    //         response.status(500).send(`Erro ao cadastrar novo dispotivo. Tente novamente mais tarde. ${error}`);
+    let entrega = date.dateFormat(request.body.entrega);
+    let retirada = date.dateFormat(request.body.retirada);
+    db.query(`
+        INSERT INTO prazos(usuario, dispositivo, retirada, entrega, setor) VALUES (?, ?, ?, ?, 1)
+    `, [
+        request.body.usuario,
+        request.body.dispositivo,
+        retirada,
+        entrega
+    ], (error, results) => {
+        if(error)
+            response.status(500).send(`Erro ao cadastrar novo prazo. Tente novamente mais tarde. ${error}`);
 
-    //     response.status(200).send(`Dispotivo ${request.body.descricao} cadastrado com sucesso!`);
-    // });
+        response.status(200).send(`Prazo cadastrado com sucesso!`);
+    });
 })
 .get('/', (request, response, next) => {
     db.query(`
@@ -31,11 +30,13 @@ router
             usuario.nome,
             usuario.email,
             setor.descricao AS 'setor',
-            dispositivos.descricao AS 'dispositivo'
+            dispositivos.descricao AS 'dispositivo',
+            IF(entrega <= retirada, 'icon-red', 'icon-green') AS 'icone'
         FROM prazos
         LEFT JOIN usuario ON usuario.id = prazos.usuario
         LEFT JOIN dispositivos ON dispositivos.id = prazos.dispositivo
         LEFT JOIN setor ON setor.id = usuario.setorID
+        ORDER BY entrega
     `, (error, results) => {
         if(error)
             response.status(500).send(`Erro ao buscar dispositivos. Tente novamente mais tarde. ${error}`);

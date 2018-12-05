@@ -36,7 +36,7 @@
                         <tbody id=dispositivos-lista>
                             <% prazos.forEach(function(prazo){ %>
                                 <tr>
-                                    <td><i class="material-icons tiny icon-green">lens</i></td>
+                                    <td><i class="material-icons tiny <%=prazo.icone%>">lens</i></td>
                                     <td><%=prazo.nome%></td>
                                     <td><%=prazo.dispositivo%></td>
                                     <td><%=prazo.retirada%></td>
