@@ -22,7 +22,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar setor. Tente novamente mais tarde. ${error}`);
 
-        response.json(results);
+        response.json({setores: results});
     });
 })
 .put('/', (request, response, next) => {
@@ -60,7 +60,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar setor. Tente novamente mais tarde. ${error}`);
 
-        response.status(200).json(results);
+        response.status(200).json({setor: results});
     });
 });
 

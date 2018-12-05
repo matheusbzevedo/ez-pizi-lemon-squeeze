@@ -22,7 +22,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar dispositivos. Tente novamente mais tarde. ${error}`);
 
-        response.json(results);
+        response.json({dispositivos: results});
     });
 })
 .put('/', (request, response, next) => {
@@ -60,7 +60,7 @@ router
         if(error)
             response.status(500).send(`Erro ao encontrar dispositivo. Tente novamente mais tarde. ${error}`);
         
-        response.status(200).json(results);
+        response.status(200).json({dispositivo: results});
     });
 });
 

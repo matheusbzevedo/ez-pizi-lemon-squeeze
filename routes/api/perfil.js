@@ -22,7 +22,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar perfil. Tente novamente mais tarde. ${error}`);
 
-        response.json(results);
+        response.json({perfis: results});
     });
 })
 .put('/', (request, response, next) => {
@@ -60,7 +60,7 @@ router
         if(error)
             response.status(500).send(`Erro ao encontrar perfil. Tente novamente mais tarde. ${error}`);
         
-        response.status(200).json(results);
+        response.status(200).json({perfil: results});
     });
 });
 

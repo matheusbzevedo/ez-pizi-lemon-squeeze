@@ -33,7 +33,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar dispositivos. Tente novamente mais tarde. ${error}`);
 
-        response.json(results);
+        response.json({prazos: results});
     });
 })
 .put('/', (request, response, next) => {
@@ -52,14 +52,14 @@ router
 })
 .delete('/', (request, response, next) => {
     db.query(`
-        DELETE FROM dispositivos WHERE dispositivos.id = ?
+        DELETE FROM prazos WHERE prazos.id = ?
     `, [
         request.body.id
     ], (error, results) => {
         if(error)
-            response.status(500).send(`Erro ao excluir dispositivo. Tente novamente mais tarde. ${error}`);
+            response.status(500).send(`Erro ao excluir dado. Tente novamente mais tarde. ${error}`);
 
-        response.status(200).send('Dispositivo excluído com sucesso!');
+        response.status(200).send('Dado excluído com sucesso!');
     });
 })
 .get('/:id', (request, response, next) => {

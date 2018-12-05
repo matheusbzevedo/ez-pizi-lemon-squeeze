@@ -23,7 +23,7 @@ router
         if(error)
             response.status(500).send(`Erro ao buscar usuários. Tente novamente mais tarde. ${error}`);
 
-        response.json(results);
+        response.json({usuarios: results});
     });
 })
 .put('/', (request, response, next) => {

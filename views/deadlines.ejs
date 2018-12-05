@@ -11,13 +11,7 @@
              <nav class="sidenav">
                 <div class=nav-wrapper>
                     <a href=javascript:void(0); class="brand-logo center"><img src=/images/logo.png alt="Scania Logo"></a>
-                    <ul id=nav-mobile class="right hide-on-med-and-down">
-                        <li><a class=blue-text href=/perfil/listar>Perfil</a></li>
-                        <li><a class=blue-text href=/login/logout>Setor</a></li>
-                        <li><a class=blue-text href=/login/logout>Usuários</a></li>
-                        <li><a href=/login/logout>Sair</a></li>
-                        <li><a class="btn modal-trigger btn-add <%= op == 0 ? 'hide' : ''%>" href=#lista-adicionar>+ Adicionar</a></li>
-                    </ul>
+                    <%- include('components/top-menu', op); %>
                 </div>
             </nav>
         </header>
@@ -37,39 +31,21 @@
                             <th>Entrega</th>
                             <th>Setor</th>
                             <th>Contato</th>
-                            <th>Matrícula</th>
+                            <th></th>
                         </thead>
                         <tbody id=dispositivos-lista>
-                            <tr>
-                                <td><i class="material-icons tiny icon-green">lens</i></td>
-                                <td>Marcel Cunha</td>
-                                <td>Notebook</td>
-                                <td>8 Nov 2018 8:17:39</td>
-                                <td>10 Nov 2018 12:00:00</td>
-                                <td>Engenharia</td>
-                                <td>(92) 99999-9999</td>
-                                <td>123456789</td>
-                            </tr>
-                            <tr>
-                                <td><i class="material-icons tiny icon-green">lens</i></td>
-                                <td>Marcel Cunha</td>
-                                <td>Notebook</td>
-                                <td>8 Nov 2018 9:41:21</td>
-                                <td>10 Nov 2018 18:00:00</td>
-                                <td>Engenharia</td>
-                                <td>(92) 99999-9999</td>
-                                <td>123456789</td>
-                            </tr>
-                            <tr>
-                                <td><i class="material-icons tiny icon-green">lens</i></td>
-                                <td>Marcel Cunha</td>
-                                <td>Notebook</td>
-                                <td>8 Nov 2018 11:17:17</td>
-                                <td>10 Nov 2018 16:30:00</td>
-                                <td>Engenharia</td>
-                                <td>(92) 99999-9999</td>
-                                <td>123456789</td>
-                            </tr>
+                            <% prazos.forEach(function(prazo){ %>
+                                <tr>
+                                    <td><i class="material-icons tiny icon-green">lens</i></td>
+                                    <td><%=prazo.nome%></td>
+                                    <td><%=prazo.dispositivo%></td>
+                                    <td><%=prazo.retirada%></td>
+                                    <td><%=prazo.entrega%></td>
+                                    <td><%=prazo.setor%></td>
+                                    <td><%=prazo.email%></td>
+                                    <td><a href="/prazos/delete/<%=prazo.id%>" class="deletePrazo"><i class="material-icons">delete</i></a></td>
+                                </tr>
+                            <% }); %>
                         </tbody>
                     </table>
                 </div>
@@ -84,27 +60,22 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="nome" type="text" class="validate">
-                                <label for="nome">Nome</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="matricula" type="text" class="validate">
-                                <label for="matricula">Matrícula</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="dispositivo" type="text" class="validate">
-                                <label for="dispositivo">Dispositivo</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <select id=setor>
+                                <select id=usuario>
                                     <option value="" disabled selected>Escolha</option>
                                     <option value=Engenharia>Engenharia</option>
                                     <option value=RH>RH</option>
                                     <option value=Contabilidade>Contabilidade</option>
                                 </select>
-                                <label>Setor</label>
+                                <label>Usuário</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select id=dispositivo>
+                                    <option value="" disabled selected>Escolha</option>
+                                    <option value=Engenharia>Engenharia</option>
+                                    <option value=RH>RH</option>
+                                    <option value=Contabilidade>Contabilidade</option>
+                                </select>
+                                <label>Dispositivo</label>
                             </div>
                         </div>
                         <div class="row">
@@ -128,6 +99,6 @@
         <script src=/lib/jquery.js></script>
         <script src=/lib/materialize.js></script>
         <script src=/js/materialize.js></script>
-        <script src=/js/dispositivo-post.js></script>
+        <script src=/js/dispositivos.js></script>
     </body>
 </html>
