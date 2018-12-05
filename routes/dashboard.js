@@ -66,7 +66,7 @@ router
     .then(res => response.redirect('/perfil/listar'))
     .catch(error => console.log(res));
 })
-.get('/setor/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/setor`).then(setores => response.render('setor/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', setores: perfis.data.setores })))
+.get('/setor/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/setor`).then(setores => response.render('setor/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', setores: setores.data.setores })))
 .get('/setor/delete/:id', auth.isLogged, auth.isAdm, (request, response, next) => {
     axios({
         method: 'DELETE',
@@ -78,7 +78,7 @@ router
     .then(res => response.redirect('/setor/listar'))
     .catch(error => console.log(res));
 })
-.get('/usuario/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/usuario`).then(usuarios => response.render('usuario/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', usuarios: perfis.data.usuarios })))
+.get('/usuario/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/usuario`).then(usuarios => response.render('usuarios/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', usuarios: usuarios.data.usuarios })))
 .get('/usuario/delete/:id', auth.isLogged, auth.isAdm, (request, response, next) => {
     axios({
         method: 'DELETE',
