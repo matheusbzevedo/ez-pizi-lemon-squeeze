@@ -6,7 +6,7 @@ const express = require('express'),
 router
 .post('/', (request, response, next) => {
     db.query(`
-        INSERT INTO setor(descricao) VALUES (?)
+        INSERT INTO usuario(email, perfilID, senha, nome, setorID) VALUES (?)
     `, [
         request.body.descricao
     ], (error, results) => {

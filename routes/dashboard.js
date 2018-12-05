@@ -29,9 +29,9 @@ router
                     blue: 'active active-blue',
                     yellow: '',
                     green: '',
-                    prazos: prazos.data,
-                    usuarios: usuarios.data,
-                    dispositivos: dispositivos.data
+                    prazos: prazos.data.prazos,
+                    usuarios: usuarios.data.usuarios,
+                    dispositivos: dispositivos.data.dispositivos
                 });
             })
             .catch(dispositivosError => console.log(dispositivosError));
@@ -54,6 +54,6 @@ router
 .get('/verificar', auth.isLogged, auth.isCommomUser, (request, response, next) => {
     response.send('Usuário comum.');
 })
-.get('/perfil/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/perfil`).then(perfis => response.render('perfil/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', perfis: perfis.data })));
+.get('/perfil/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/perfil`).then(perfis => response.render('perfil/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', perfis: perfis.data.perfis })));
 
 module.exports = router;

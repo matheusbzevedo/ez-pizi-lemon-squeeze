@@ -8,7 +8,7 @@
     </head>
     <body>
         <header class=scania-header>
-             <nav class="sidenav">
+             <nav class=sidenav>
                 <div class=nav-wrapper>
                     <a href=javascript:void(0); class="brand-logo center"><img src=/images/logo.png alt="Scania Logo"></a>
                     <%- include('components/top-menu', op); %>
@@ -58,34 +58,44 @@
             <div class=modal-content>
                 <div class=row>
                     <form class="col s12">
-                        <div class="row">
+                        <div class=row>
                             <div class="input-field col s6">
                                 <select id=usuario>
                                     <option value="" disabled selected>Escolha</option>
-                                    <option value=Engenharia>Engenharia</option>
-                                    <option value=RH>RH</option>
-                                    <option value=Contabilidade>Contabilidade</option>
+                                     <% usuarios.forEach(function(usuario){ %>
+                                        <option value="<%=usuario.id%>"><%=usuario.email%></option>
+                                    <% }); %>
                                 </select>
                                 <label>Usuário</label>
                             </div>
                             <div class="input-field col s6">
                                 <select id=dispositivo>
                                     <option value="" disabled selected>Escolha</option>
-                                    <option value=Engenharia>Engenharia</option>
-                                    <option value=RH>RH</option>
-                                    <option value=Contabilidade>Contabilidade</option>
+                                    <% dispositivos.forEach(function(dispositivo){ %>
+                                        <option value="<%=dispositivo.id%>"><%=dispositivo.descricao%></option>
+                                    <% }); %>
                                 </select>
                                 <label>Dispositivo</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class=row>
                             <div class="input-field col s6">
-                                <input id=retirada type=text class=datepicker>
-                                <label for="retirada">Data de Retirada</label>
+                                <input id=dataRetirada type=text class=datepicker>
+                                <label for=dataRetirada>Data de Retirada</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id=entrega type=text class=datepicker>
-                                <label for=entrega>Data de Entrega</label>
+                                <input id=dataEntrega type=text class=datepicker>
+                                <label for=dataEntrega>Data de Entrega</label>
+                            </div>
+                        </div>
+                        <div class=row>
+                            <div class="input-field col s6">
+                                <input id=horaRetirada type=text class=timepicker>
+                                <label for=horaRetirada>Hora de Retirada</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id=horaEntrega type=text class=timepicker>
+                                <label for=horaEntrega>Hora de Entrega</label>
                             </div>
                         </div>
                     </form>
@@ -98,6 +108,7 @@
         </div>
         <script src=/lib/jquery.js></script>
         <script src=/lib/materialize.js></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src=/js/materialize.js></script>
         <script src=/js/dispositivos.js></script>
     </body>

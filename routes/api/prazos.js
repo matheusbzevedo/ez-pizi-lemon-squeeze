@@ -4,16 +4,23 @@ const express = require('express'),
 
 router
 .post('/', (request, response, next) => {
-    db.query(`
-        INSERT INTO dispositivos(descricao) VALUES (?)
-    `, [
-        request.body.descricao
-    ], (error, results) => {
-        if(error)
-            response.status(500).send(`Erro ao cadastrar novo dispotivo. Tente novamente mais tarde. ${error}`);
+    console.log(new Date(request.body.entrega).getFullYear());
+    console.log(new Date(request.body.entrega).getMonth());
+    console.log(new Date(request.body.entrega).getDate());
+    console.log(new Date(request.body.entrega).getHours());
+    console.log(new Date(request.body.entrega).getMinutes());
+    console.log(new Date(request.body.entrega).getSeconds());
+    response.send(request.body);
+    // db.query(`
+    //     INSERT INTO prazos(usuario, dispositivo, retirada, entrega, setor) VALUES (?, ?, ?, ?, 1)
+    // `, [
+    //     request.body.descricao
+    // ], (error, results) => {
+    //     if(error)
+    //         response.status(500).send(`Erro ao cadastrar novo dispotivo. Tente novamente mais tarde. ${error}`);
 
-        response.status(200).send(`Dispotivo ${request.body.descricao} cadastrado com sucesso!`);
-    });
+    //     response.status(200).send(`Dispotivo ${request.body.descricao} cadastrado com sucesso!`);
+    // });
 })
 .get('/', (request, response, next) => {
     db.query(`
