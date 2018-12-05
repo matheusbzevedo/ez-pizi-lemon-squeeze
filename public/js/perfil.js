@@ -3,7 +3,7 @@ $('#add-perfil').on('click', (event) => {
         method: 'POST',
         url: '/api/perfil',
         data: {
-            descricao: $('#descricao').val()
+            descricao: $('#descricaoAdicionar').val()
         }
     })
     .then(response => { Materialize.toast(response.data, 2000, 'rounded', () => { location.reload(); }); })
@@ -11,8 +11,8 @@ $('#add-perfil').on('click', (event) => {
 });
 $('.edit-item').on('click', (event) => {
     $('#lista-editar-item').ready(() => {
-        $('.input-field input[name=descricao]').attr('value', $(event.currentTarget).parent().prev().text());
-        $('.input-field input[name=id]').attr('value', $(event.currentTarget).parent().prev().prev().text());
+        $('.input-field input[name=descricaoAlterar]').val($(event.currentTarget).parent().prev().text());
+        $('.input-field input[name=id]').val($(event.currentTarget).parent().prev().prev().text());
     })
 });
 $('#updt-perfil').on('click', (event) => {
@@ -22,7 +22,7 @@ $('#updt-perfil').on('click', (event) => {
             url: '/api/perfil',
             data: {
                 id: $('#id').val(),
-                descricao: $('#descricao').val()
+                descricao: $('#descricaoAlterar').val()
             }
         })
         .then(response => { Materialize.toast(response.data, 2000, 'rounded', () => { location.reload(); }); })
