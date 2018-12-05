@@ -50,7 +50,18 @@ router
 
         response.status(200).send(`Setor excluído com sucesso!`);
     });
-    response.status(200).send(request.body);
+})
+.get('/:id', (request, response, next) => {
+    db.query(`
+        SELECT * FROM setor WHERE setor.id = ?
+    `, [
+        request.params.id
+    ], (error, results) => {
+        if(error)
+            response.status(500).send(`Erro ao buscar setor. Tente novamente mais tarde. ${error}`);
+
+        response.status(200).json(results);
+    });
 });
 
 module.exports = router;

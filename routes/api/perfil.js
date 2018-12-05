@@ -41,7 +41,7 @@ router
 })
 .delete('/', (request, response, next) => {
     db.query(`
-        DELETE FROM perfil WHERE id = ?
+        DELETE FROM perfil WHERE perfil.id = ?
     `, [
         request.body.id
     ], (error, results) => {
@@ -53,14 +53,14 @@ router
 })
 .get('/:id', (request, response, next) => {
     db.query(`
-        SELECT * FROM perfil WHERE id = ?
+        SELECT * FROM perfil WHERE perfil.id = ?
     `, [
         request.params.id
     ], (error, results) => {
         if(error)
             response.status(500).send(`Erro ao encontrar perfil. Tente novamente mais tarde. ${error}`);
         
-            response.status(200).json(results);
+        response.status(200).json(results);
     });
 });
 

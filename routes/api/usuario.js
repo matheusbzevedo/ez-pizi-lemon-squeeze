@@ -53,7 +53,7 @@ router
     });
     response.status(200).send(request.body);
 })
-.get('/:id', auth.hasToken, (request, response, next) => {
+.get('/:id', (request, response, next) => {
     response.send(request.params);
 });
 
