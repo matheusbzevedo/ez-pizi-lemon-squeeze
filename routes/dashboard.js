@@ -54,7 +54,7 @@ router
 .get('/verificar', auth.isLogged, auth.isCommomUser, (request, response, next) => {
     response.send('Usuário comum.');
 })
-.get('/device/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/dispositivo`).then(perfis => response.render('dispositivos/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', dispositivos: dispositivos.data.dispositivos })))
+.get('/device/listar', auth.isLogged, auth.isAdm, (request, response, next) => axios.get(`${process.env.API_URL}/dispositivo`).then(dispositivos => response.render('dispositivos/lista', { title: 'Scania | Lista', op: 0, red: '', blue: '', yellow: '', green: '', dispositivos: dispositivos.data.dispositivos })))
 .get('/device/delete/:id', auth.isLogged, auth.isAdm, (request, response, next) => {
     axios({
         method: 'DELETE',
